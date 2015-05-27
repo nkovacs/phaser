@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.1.3 "Ravinda" - Built: Thu Oct 23 2014 12:33:03
+* v2.1.3 "Ravinda" - Built: Wed May 27 2015 12:36:31
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -42939,8 +42939,14 @@ Phaser.Sound.prototype = {
                 }
                 else
                 {
-                    // this._sound.start(0, this.position, this.duration / 1000);
-                    this._sound.start(0, this.position, this.duration);
+                    if (this.loop && marker === '')
+                    {
+                        this._sound.start(0);
+                    }
+                    else
+                    {
+                        this._sound.start(0, this.position, this.duration);
+                    }
                 }
 
                 this.isPlaying = true;
@@ -43084,7 +43090,11 @@ Phaser.Sound.prototype = {
                 }
                 else
                 {
-                    this._sound.start(0, p, this.duration);
+                    if (this.loop) {
+                        this._sound.start(0, p);
+                    } else {
+                        this._sound.start(0, p, this.duration);
+                    }
                 }
             }
             else
